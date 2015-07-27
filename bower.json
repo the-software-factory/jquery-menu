@@ -17,6 +17,7 @@
     "jquery": "2.1.4"
   },
   "ignore": [
+    "examples",
     "tests",
     ".gitignore",
     "Gruntfile.js",

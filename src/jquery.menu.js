@@ -74,15 +74,15 @@
                 var menuItem = this;
 
                 // Prevents an immediate closing of the menu when the mouse goes out from the menu
-                if (_timer[_getMenuItemID(menuItem)]
-                        && _timer[_getMenuItemID(menuItem)].callback > 0) {
+                if (_timer[_getMenuItemID(menuItem)] &&
+                        _timer[_getMenuItemID(menuItem)].callback > 0) {
                     clearTimeout(_timer[_getMenuItemID(menuItem)].callback);
                 }
 
                 $.each(_timer, function(menuItemID, obj) {
-                    if (menuItemID !== _getMenuItemID(menuItem)
-                        && $(obj.element).find(menuItem).length == 0
-                        && $(menuItem).find(obj.element).length == 0) {
+                    if (menuItemID !== _getMenuItemID(menuItem) &&
+                            $(obj.element).find(menuItem).length === 0 &&
+                            $(menuItem).find(obj.element).length === 0) {
                         _toggleMenuItem(obj.element);
                     }
                 });
