@@ -1,6 +1,6 @@
 {
   "name": "jquery-menu",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A menu with the default configuration, disabled items and nested menus.",
   "author": {
     "name": "Andrea Stronati",
