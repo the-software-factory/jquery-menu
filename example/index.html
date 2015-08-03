@@ -1,35 +1,6 @@
 <html>
     <head>
-        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="../dist/jquery.menu.min.js"></script>
-        <style>
-            .menu {
-                position: relative;
-            }
-            .menu .menu-item {
-                display: inline-block;
-                position: relative;
-                vertical-align: top;
-            }
-            .menu,
-            .menu .sub-menu {
-                min-width: 100%;
-                padding: 0;
-                position: absolute;
-                white-space: nowrap;
-                width: auto;
-            }
-            .menu .sub-menu {
-                display: none;
-            }
-            .menu .sub-menu .sub-menu {
-                left: 100%;
-                top: 0;
-            }
-            .menu .sub-menu .menu-item {
-                display: block;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
         <div>
@@ -52,7 +23,6 @@
                 </div>
             </div>
         </div>
-        <br><br><br>
         <div>
             <ul class="menu">
                 <li class="menu-item">
@@ -79,6 +49,10 @@
                 </li>
             </ul>
         </div>
+
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../dist/jquery.menu.min.js"></script>
+
         <script>
             jQuery(document).ready(function($) {
                 $('.menu').menu();

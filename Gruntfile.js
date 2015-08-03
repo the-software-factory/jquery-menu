@@ -3,6 +3,9 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         jshint: {
+            options: {
+                multistr: true
+            },
             all: ['Gruntfile.js', 'src/**/*.js', 'test/*.js', 'test/src/**/*.js']
         },
         uglify: {

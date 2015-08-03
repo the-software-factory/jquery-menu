@@ -13,6 +13,7 @@
 
         /**
          * Extend default options with those provided.
+         *
          * @type {Object}
          * @private
          */
@@ -30,84 +31,122 @@
          *    ...
          *  }
          * }
+         *
          * @type {Object}
          * @private
          */
         var _timer = {};
 
         /**
-         * Get the identifier of the menu item
+         * Keeps track of the last menu item ID. Each menu item ID is an incremental number.
          *
-         * @param {Object} menuItem
-         * @return {string}
+         * @type {number}
+         * @see _setMenuItemID
          * @private
          */
-        var _getMenuItemID = function(menuItem) {
-            // TODO find a better way to get an identifier of the menu item
-            return $(menuItem).text().replace(/ |\n/g, '');
+        var _lastMenuItemID = 0;
+
+        /**
+         * Assigns a unique menu item ID via the "data-menu-id" attribute
+         *
+         * @param {Object} menuItem
+         * @private
+         */
+        var _setMenuItemID = function(menuItem) {
+            $(menuItem).data('menu-id', ++_lastMenuItemID);
         };
 
         /**
-         * Hide/Show menu item.
+         * Get the identifier of the menu item
          *
          * @param {Object} menuItem
-         * @param {boolean} isVisible If true then show the menu item, otherwise hide it.
+         * @return {number}
          * @private
          */
-        var _toggleMenuItem = function(menuItem, isVisible) {
-            var subMenu = $(menuItem).find('.' + _opts.subMenuClass).first();
-            if (isVisible) {
-                $(menuItem).addClass(_opts.visibleMenuItemClass);
-                // Show the sub menu of the menu item
-                subMenu.show();
-            }
-            else {
-                $(menuItem).removeClass(_opts.visibleMenuItemClass);
-                // Hide the sub menu of the menu item
-                subMenu.hide();
-            }
+        var _getMenuItemID = function(menuItem) {
+            return $(menuItem).data('menu-id');
+        };
+
+        /**
+         * Finds the submenu of an menu item
+         *
+         * @param {Object} menuItem
+         * @returns {Object} submenu of the menuItem
+         * @private
+         */
+        var _getSubMenu = function(menuItem) {
+            return $(menuItem).find('.' + _opts.subMenuClass).first();
+        };
+
+        /**
+         * Removes the visible menu item CSS class to menuItem and hides its submenu
+         *
+         * @param {Object} menuItem
+         * @private
+         */
+        var _hideMenuItem = function(menuItem) {
+            $(menuItem).removeClass(_opts.visibleMenuItemClass);
+            _getSubMenu(menuItem).hide();
+        };
+
+        /**
+         * Adds the visible menu item CSS class to menuItem and shows its submenu
+         *
+         * @param {Object} menuItem
+         * @private
+         */
+        var _showMenuItem = function(menuItem) {
+            $(menuItem).addClass(_opts.visibleMenuItemClass);
+            _getSubMenu(menuItem).show();
         };
 
         return this.each(function() {
             var menu = this;
-            $(menu).find('.' + _opts.menuItemClass).on('mouseenter', function(event) {
-                var menuItem = this;
 
-                // Prevents an immediate closing of the menu when the mouse goes out from the menu
-                if (_timer[_getMenuItemID(menuItem)] &&
-                        _timer[_getMenuItemID(menuItem)].callback > 0) {
-                    clearTimeout(_timer[_getMenuItemID(menuItem)].callback);
-                }
+            $(menu).find('.' + _opts.menuItemClass)
+                // Assign unique IDs to all the menu items
+                .each(function(index, menuItem) {
+                    _setMenuItemID(menuItem);
+                })
+                .on('mouseenter', function(event) {
+                    var menuItem = this;
 
-                $.each(_timer, function(menuItemID, obj) {
-                    if (menuItemID !== _getMenuItemID(menuItem) &&
-                            $(obj.element).find(menuItem).length === 0 &&
-                            $(menuItem).find(obj.element).length === 0) {
-                        _toggleMenuItem(obj.element);
+                    // Prevents an immediate closing of the menu when the mouse goes out from the menu
+                    if (_timer[_getMenuItemID(menuItem)] &&
+                            _timer[_getMenuItemID(menuItem)].callback > 0) {
+                        clearTimeout(_timer[_getMenuItemID(menuItem)].callback);
+                    }
+
+                    // Hide all submenus that are not parents or children of the current pointed item
+                    $.each(_timer, function(menuItemID, obj) {
+                        if (menuItemID !== _getMenuItemID(menuItem) &&
+                                $(obj.element).find(menuItem).length === 0 &&
+                                $(menuItem).find(obj.element).length === 0) {
+                            _hideMenuItem(obj.element);
+                        }
+                    });
+
+                    // Show submenu
+                    _showMenuItem(menuItem);
+                }).on('mouseleave', function(event) {
+                    var menuItem = this;
+
+                    // If the mouse points the menu container
+                    if ($(menu).is(document.elementFromPoint(event.clientX, event.clientY))) {
+                        // Hide the submenu
+                        _hideMenuItem(menuItem);
+                    }
+                    else {
+                        // The mouse is outside the menu container
+                        _timer[_getMenuItemID(menuItem)] = {
+                            element: menuItem,
+                            callback: setTimeout(function() {
+                                // Hide submenu
+                                _hideMenuItem(menuItem);
+                            }, _opts.delay)
+                        };
                     }
                 });
-
-                // Show sub menu
-                _toggleMenuItem(menuItem, true);
-            }).on('mouseleave', function(event) {
-                var menuItem = this;
-
-                // If the mouse is out from the menu container
-                if ($(menu).has(document.elementFromPoint(event.clientX, event.clientY)).length <= 0) {
-                    _timer[_getMenuItemID(menuItem)] = {
-                        element: menuItem,
-                        callback: setTimeout(function() {
-                            // Hide sub menu
-                            _toggleMenuItem(menuItem);
-                        }, _opts.delay)
-                    };
-                }
-                // If the mouse is yet in menu container
-                else {
-                    // Hide sub menu
-                    _toggleMenuItem(menuItem);
-                }
-            });
         });
     };
 
@@ -126,7 +165,7 @@
         delay: 300,
 
         /**
-         * Class name of the sub menu.
+         * Class name of the submenu.
          * @type {string}
          */
         subMenuClass: 'sub-menu',

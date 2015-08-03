@@ -1,0 +1,10 @@
+{
+  "name": "jquery-menu-test",
+  "devDependencies": {
+    "jasmine-jquery": "",
+    "karma": "",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-jasmine": "",
+    "karma-phantomjs-launcher": ""
+  }
+}
