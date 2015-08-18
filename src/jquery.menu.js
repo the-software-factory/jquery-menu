@@ -4,15 +4,15 @@
 (function($) {
 
     /**
-     * Define a jQuery object method called menu to initialize any menu on that selector.
+     * Defines a jQuery object method called menu to initialize any menu on that selector.
      *
      * @param {Object} options (Optional)
-     * @return {selector}
+     * @return {Array|Object}
      */
     $.fn.menu = function(options) {
 
         /**
-         * Extend default options with those provided.
+         * Extends default options with those provided.
          *
          * @type {Object}
          * @private
@@ -20,7 +20,7 @@
         var _opts = $.extend({}, $.fn.menu.defaults, options);
 
         /**
-         * A container of delays of menu items closing.
+         * A container of menu items closing delays
          * The key is the menu item ID and the value is an object as follows:
          * {
          *  menuItemID: {
@@ -57,7 +57,7 @@
         };
 
         /**
-         * Get the identifier of the menu item
+         * Gets the identifier of the menu item
          *
          * @param {Object} menuItem
          * @return {number}
@@ -71,7 +71,7 @@
          * Finds the submenu of an menu item
          *
          * @param {Object} menuItem
-         * @returns {Object} submenu of the menuItem
+         * @return {Object} submenu of the menuItem
          * @private
          */
         var _getSubMenu = function(menuItem) {
@@ -104,7 +104,7 @@
             var menu = this;
 
             $(menu).find('.' + _opts.menuItemClass)
-                // Assign unique IDs to all the menu items
+                // Assigns unique IDs to all the menu items
                 .each(function(index, menuItem) {
                     _setMenuItemID(menuItem);
                 })
@@ -117,7 +117,7 @@
                         clearTimeout(_timer[_getMenuItemID(menuItem)].callback);
                     }
 
-                    // Hide all submenus that are not parents or children of the current pointed item
+                    // Hides all the submenus that are not parents or children of the current pointed item
                     $.each(_timer, function(menuItemID, obj) {
                         if (menuItemID !== _getMenuItemID(menuItem) &&
                                 $(obj.element).find(menuItem).length === 0 &&
@@ -126,14 +126,14 @@
                         }
                     });
 
-                    // Show submenu
+                    // Shows the submenu
                     _showMenuItem(menuItem);
                 }).on('mouseleave', function(event) {
                     var menuItem = this;
 
                     // If the mouse points the menu container
                     if ($(menu).is(document.elementFromPoint(event.clientX, event.clientY))) {
-                        // Hide the submenu
+                        // Hides the submenu
                         _hideMenuItem(menuItem);
                     }
                     else {
@@ -141,7 +141,7 @@
                         _timer[_getMenuItemID(menuItem)] = {
                             element: menuItem,
                             callback: setTimeout(function() {
-                                // Hide submenu
+                                // Hides the submenu
                                 _hideMenuItem(menuItem);
                             }, _opts.delay)
                         };
@@ -166,18 +166,21 @@
 
         /**
          * Class name of the submenu.
+         *
          * @type {string}
          */
         subMenuClass: 'sub-menu',
 
         /**
          * Class name of the menu item.
+         *
          * @type {string}
          */
         menuItemClass: 'menu-item',
 
         /**
          * Class name of the visible menu item.
+         *
          * @type {string}
          */
         visibleMenuItemClass: 'is-menu-item-visible'

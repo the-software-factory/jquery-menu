@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Mon Aug 03 2015 16:23:19 GMT+0200 (CEST)
+// Generated on Mon Aug 17 2015 15:48:13 GMT+0200 (CEST)
 
 module.exports = function(config) {
   config.set({
@@ -15,10 +15,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'bower_components/jquery/dist/jquery.min.js',
-      'test/node_modules/jasmine-jquery/lib/jasmine-jquery.js',
-      'src/*.js',
-      'test/src/*.js'
+        'bower_components/jquery/dist/jquery.min.js',
+        'test/node_modules/jasmine-jquery/lib/jasmine-jquery.js',
+        'src/*.js',
+        'test/src/*.js'
     ],
 
 
@@ -64,5 +64,5 @@ module.exports = function(config) {
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: true
-  });
+});
 };

@@ -7,9 +7,11 @@
     position: relative;
     vertical-align: top;
 }
+
 .menu, .menu .submenu {
     padding: 0;
 }
+
 .menu .sub-menu {
     min-width: 100%;
     padding: 0;
