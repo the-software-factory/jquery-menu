@@ -70,10 +70,7 @@ module.exports = function(grunt) {
                 }
             },
             release: {
-                src: 'CHANGELOG.md',
-                warn: function() {
-
-                }
+                src: 'CHANGELOG.md'
             }
         }
     });
