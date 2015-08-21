@@ -190,7 +190,7 @@ describe("jQuery-Menu functional tests", function() {
         });
 
         // If there are 2 menu items with the same name, the ID must still be unique
-        it("Generates unique item IDs", function() {
+        it("Generates unique item IDs if menu has items with the same name", function() {
             defaultItems.firstMenuItem.parent().append(defaultItems.firstMenuItem.clone());
 
             // Rebuild the menu considering the cloned item
@@ -208,6 +208,38 @@ describe("jQuery-Menu functional tests", function() {
             id2 = $(sameMenuItem).data("menu-id");
 
             expect(id1).not.toBe(id2);
+        });
+
+        it("Menu item IDs of one menu are reused in other menus", function() {
+            // Changes class to custom-menu and reinitializes a menu
+            $('.menu').first().removeClass("menu")
+                .addClass("custom-menu")
+                .menu();
+
+            var menuIDs = [];
+            var customMenuIDs = [];
+
+            $(".menu").find(".menu-item").each(function() {
+                menuIDs.push($(this).data("menu-id"));
+            });
+
+            $(".custom-menu").find(".menu-item").each(function() {
+                customMenuIDs.push($(this).data("menu-id"));
+            });
+
+            var commonIds = menuIDs.filter(function(id) {
+                var haveElementsInCommon = false;
+
+                customMenuIDs.forEach(function(customId) {
+                    if (id === customId) {
+                      haveElementsInCommon = true;
+                    }
+                });
+
+                return haveElementsInCommon;
+            }).length;
+
+            expect(commonIds > 0).toBeTruthy();
         });
     });
 
