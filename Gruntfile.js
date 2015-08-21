@@ -1,5 +1,6 @@
 var exec = require('child_process').exec;
 var execSync = require('child_process').execSync;
+var fs = require('fs');
 
 module.exports = function(grunt) {
 
@@ -83,6 +84,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-concurrent');
 
+    grunt.registerTask("emptyTheChangelog", function() {
+      fs.truncateSync(grunt.config.get("conventionalChangelog.release.src"), 0);
+    });
+
     grunt.registerTask("changelogCommit", function() {
         var done = this.async();
 
@@ -108,5 +113,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask("default", ["jshint", "uglify", "usebanner"]);
     grunt.registerTask("development", ["devserver", "watch"]);
-    grunt.registerTask("changelog", ["conventionalChangelog", "changelogCommit"]);
+    grunt.registerTask("changelog", ["emptyTheChangelog", "conventionalChangelog", "changelogCommit"]);
 };

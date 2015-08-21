@@ -68,17 +68,18 @@ $ cd test && npm install
 ### Grunt Tasks
 Here is a list of grunt `tasks` => `actions` mappings, see below for a deeper explanation of the actions.
 
-|   *Grunt task*    | *jshint* | *uglify* | *usebanner* | *devserver* | *watch* | *conventionalChangelog* | *changelogCommit* |
-|-------------------|:--------:|:--------:|:-----------:|:-----------:|:-------:|:-----------------------:|:-----------------:|
-|      grunt        |    *     |    *     |      *      |             |         |                         |                   |
-| grunt development |          |          |             |      *      |    *    |                         |                   |
-| grunt changelog   |          |          |             |             |         |          *              |         *         |
+|   *Grunt task*    | *jshint* | *uglify* | *usebanner* | *devserver* | *watch* | *emptyTheChangelog* | *conventionalChangelog* | *changelogCommit* |
+|-------------------|:--------:|:--------:|:-----------:|:-----------:|:-------:|:-------------------:|:-----------------------:|:-----------------:|
+|      grunt        |    *     |    *     |      *      |             |         |                     |                         |                   |
+| grunt development |          |          |             |      *      |    *    |                     |                         |                   |
+| grunt changelog   |          |          |             |             |         |         *           |          *              |         *         |
 
 * *jshint*: Validate files with JSHint.
 * *uglify*: Create the final \*.min.js.
 * *usebanner*: Prepends a banner to the minified file
 * *devserver*: Spawns a web server so you can rapidly test your app in action
 * *watch*: Run default task when src or test files are added, changed or deleted.
+* *emptyTheChangelog*: Truncates the CHANGELOG.md file as conventionalChangelog task will append fully regenerated changelog
 * *conventionalChangelog*: Appends Markdown-formatted changelog history to CHANGELOG.md
 * *changelogCommit*: Prepares a new commit with updated CHANGELOG.md and commit message "CHANGELOG.md Updated"
 
