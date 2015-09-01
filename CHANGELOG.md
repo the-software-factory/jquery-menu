@@ -8,6 +8,7 @@
 * Code adjusted, Banner added, Grunt tasks added, README modified, package.json modified ab1a684
 * Grunt changelog task modified 1a72efe
 * Gruntfile updated 81ec3ee
+* Travis badge prepended to the README.md 51427c9
 * TravisCI configuration file added 7a9ed49
 
 
