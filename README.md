@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/the-software-factory/jquery-menu.svg?branch=master)](https://travis-ci.org/the-software-factory/jquery-menu)
+
 # jQuery Menu
 A menu with the default configuration, disabled items and nested menus.
 This plugin is used to define the behaviour of a menu and of all its menu items.
