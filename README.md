@@ -18,41 +18,49 @@ Please run the following script to initialize a menu with the default options:
 $('.menu').menu();
 ```
 
-The menu method accepts an configuration object with the following options:
+You can also specify the following custom options that will overwrite the default ones:
 
-### delay
-* Delay (in milliseconds) of menu item closing
-* Type: number
+#### delay
+* Type: `Number`
 * Default: `300`
+* Description: Delay (in milliseconds) of menu item closing
 
-### subMenuClass
-* CSS class name of any sub menu.
-* Type: string
+#### subMenuClass
+* Type: `String`
 * Default: `sub-menu`
+* Description: CSS class name of any sub menu
 
-### menuItemClass
-* CSS class name of any menu item.
-* Type: string
+#### menuItemClass
+* Type: `String`
 * Default: `menu-item`
+* Description: CSS class name of any menu item
 
-### visibleMenuItemClass
-* CSS class name of the visible menu item.
-* Type: string
+#### visibleMenuItemClass
+* Type: `String`
 * Default: `is-menu-item-visible`
+* Description: CSS class name of the visible menu item
+
+#### Example usage
+```js
+$('.menu').menu({
+	delay: 500,
+	subMenuClass: "custom-sub-menu-class"
+});
+```
 
 ## Development
 The project has the following structure:
 ```
 dist/
-	*.min.js // The minified and uglified version of the component.
+	*.min.js // The uglified version of the component.
 example/
-	index.html	// jQuery Menu demo
+	index.html	// jQuery Menu demo page
 	css/*.css	// Demo page's stylesheet
 src/
     *.js // The source file
 tests/
-    ... // Contains all tests and all needed file to set up a tests environment.
-    *.test.js // All tests need to have the "test" suffix before the extension.
+    src/*.js // Tests
+		...	// Test runner configuration and test dependencies
 ...
 ```
 
@@ -63,7 +71,7 @@ install client-side dependencies, build it and test it.
 Please run following commands in the project's root directory to install all dependencies:
 ```sh
 $ npm install
-$ node_modules/bower/bin/bower install
+$ ./node_modules/bower/bin/bower install
 $ cd test && npm install
 ```
 

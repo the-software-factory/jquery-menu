@@ -17,11 +17,17 @@
     "jquery": "2.1.4"
   },
   "ignore": [
-    "examples",
-    "tests",
-    ".gitignore",
+    ".*",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "example",
+    "test",
     "Gruntfile.js",
-    "package.json"
+    "package.json",
+    "README.md",
+    "CONTRIBUTING.md",
+    "CHANGELOG.md"
   ],
   "main": [
     "dist/jquery.menu.min.js",
