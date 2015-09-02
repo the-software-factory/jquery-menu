@@ -1,5 +1,5 @@
 <a name="1.0.0"></a>
-# [1.0.0](//compare/1.0.0...v1.0.0) (2015-09-01)
+# [1.0.0](//compare/1.0.0...v1.0.0) (2015-09-02)
 
 
 ### Features
@@ -8,6 +8,7 @@
 * Code adjusted, Banner added, Grunt tasks added, README modified, package.json modified ab1a684
 * Grunt changelog task modified 1a72efe
 * Gruntfile updated 81ec3ee
+* README corrected and updated, Bower added files to ignore 156f44c
 * Travis badge prepended to the README.md 51427c9
 * TravisCI configuration file added 7a9ed49
 
