@@ -5,6 +5,12 @@ var fs = require('fs');
 module.exports = function(grunt) {
 
     grunt.initConfig({
+      concat: {
+          js: {
+              src: 'src/jquery.menu.js',
+              dest: 'dist/jquery.menu.js'
+          }
+        },
         jshint: {
             options: {
                 multistr: true
@@ -36,7 +42,7 @@ module.exports = function(grunt) {
                     }
                 },
                 files: {
-                    src: ['dist/jquery.menu.min.js']
+                    src: ['dist/jquery.menu.min.js', 'dist/jquery.menu.js']
                 }
             }
         },
@@ -85,6 +91,7 @@ module.exports = function(grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-banner');
@@ -120,7 +127,7 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerTask("default", ["jshint", "uglify", "usebanner"]);
+    grunt.registerTask("default", ["jshint", "uglify", "concat", "usebanner"]);
     grunt.registerTask("development", ["devserver", "watch"]);
     grunt.registerTask("changelog", ["emptyTheChangelog", "conventionalChangelog", "changelogCommit"]);
 };
