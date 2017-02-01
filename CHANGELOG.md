@@ -1,5 +1,11 @@
-<a name="1.0.0"></a>
-# [1.0.0](//compare/1.0.0...v1.0.0) (2015-09-08)
+<a name="1.1.0"></a>
+# [1.1.0](//compare/1.1.0...v1.1.0) (2017-02-01)
+
+
+
+
+<a name="1.1.0"></a>
+# [1.1.0](//compare/1.0.0...1.1.0) (2017-02-01 11:36:05 +0100)
 
 
 ### Bug Fixes
@@ -8,6 +14,7 @@
 
 ### Features
 
+* Added not minified version [a4f5fd7](https://github.com/the-software-factory/jquery-menu/commit/a4f5fd757d9cb4a1b381f7d276ad89b791cb1998) 
 * Automatic changelog generation task added, README.md updated, CONTRIBUTION.md added [9d68ba8](https://github.com/the-software-factory/jquery-menu/commit/9d68ba8b4354ab1d5f0526be5b48f1a053f03060) 
 * Code adjusted, Banner added, Grunt tasks added, README modified, package.json modified [ab1a684](https://github.com/the-software-factory/jquery-menu/commit/ab1a6844e584efac278474cea77eac08c7460674) 
 * Grunt changelog task modified [1a72efe](https://github.com/the-software-factory/jquery-menu/commit/1a72efe4694a233e4cab9e0019485db212fe6380) 
